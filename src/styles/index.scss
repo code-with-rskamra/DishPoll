@@ -1,0 +1,11 @@
+@import "./variables.scss";
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $Poppins;
+  width: 100%;
+}

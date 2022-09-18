@@ -1,5 +1,14 @@
+import Login from "./components/Login";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 const App = () => {
-  return <div>Dish-Poll</div>;
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+      </Routes>
+    </Router>
+  );
 };
 
 export default App;
