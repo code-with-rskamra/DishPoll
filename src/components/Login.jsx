@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { AppContext } from "../context/AppContextProvider";
 import { verifyUser } from "../utils/auth";
 import classes from "../styles/Login.module.scss";
-import { useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 const inititalState = {
   username: "",
@@ -11,7 +11,8 @@ const inititalState = {
 
 const Login = () => {
   const [userDetails, setUserDetails] = useState(inititalState);
-  const { handleAlert, authSuccess, alert } = useContext(AppContext);
+  const { handleAlert, authSuccess, alert, loginStatus } =
+    useContext(AppContext);
   const navigate = useNavigate();
 
   const handleLogin = () => {
@@ -23,6 +24,12 @@ const Login = () => {
     }
   };
 
+  useEffect(() => {
+    if (loginStatus) {
+      navigate("/dashboard");
+    }
+  }, []);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     const data = {
@@ -31,6 +38,7 @@ const Login = () => {
     };
     setUserDetails(data);
   };
+
   return (
     <div className={classes.main}>
       <div className={classes.login}>
