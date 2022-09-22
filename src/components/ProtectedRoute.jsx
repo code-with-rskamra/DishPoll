@@ -4,7 +4,7 @@ import { AppContext } from "../context/AppContextProvider";
 
 const ProtectedRoute = () => {
   const { loginStatus } = useContext(AppContext);
-  return loginStatus ? <Outlet /> : <Navigate to="/" />;
+  return loginStatus?.status ? <Outlet /> : <Navigate to="/" />;
 };
 
 export default ProtectedRoute;

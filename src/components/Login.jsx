@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { AppContext } from "../context/AppContextProvider";
 import { verifyUser } from "../utils/auth";
 import classes from "../styles/Login.module.scss";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const inititalState = {
   username: "",
@@ -11,21 +11,24 @@ const inititalState = {
 
 const Login = () => {
   const [userDetails, setUserDetails] = useState(inititalState);
-  const { handleAlert, authSuccess, alert, loginStatus } =
+  const { handleAlert, authSuccess, alert, loginStatus, setLoginStatus } =
     useContext(AppContext);
   const navigate = useNavigate();
 
   const handleLogin = () => {
     let auth = verifyUser(userDetails.username, userDetails.password);
-    handleAlert({ ...auth, status: true });
+    if (!auth.status) {
+      handleAlert({ ...auth, status: true });
+    }
     if (auth?.status) {
       authSuccess();
       navigate("/dashboard");
+      setLoginStatus({ user: userDetails.username, status: auth.status });
     }
   };
 
   useEffect(() => {
-    if (loginStatus) {
+    if (loginStatus.status) {
       navigate("/dashboard");
     }
   }, []);
@@ -62,7 +65,6 @@ const Login = () => {
           Login
         </button>
       </div>
-      {alert?.status && <div className={classes.alert}>{alert?.message}</div>}
     </div>
   );
 };

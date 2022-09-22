@@ -32,7 +32,11 @@ const Dashboard = () => {
           Poll Result
         </div>
       </div>
-      {activeTab == 1 && <Dishes />}
+      {activeTab == 1 && (
+        <>
+          <Dishes />
+        </>
+      )}
     </>
   );
 };

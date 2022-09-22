@@ -1,5 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { createContext, useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
 const initialState = {
@@ -12,21 +11,21 @@ const AppContextProvider = ({ children }) => {
   const [alert, setAlert] = useState(initialState);
   const [auth, setAuth] = useState(false);
   const [selectedDishes, setSelectedDishes] = useState([]);
-  const [loginStatus, setLoginStatus] = useLocalStorage(
-    "authentication",
-    false
-  );
+  const [loginStatus, setLoginStatus] = useLocalStorage("authentication", {
+    status: false,
+    user: null,
+  });
 
   const handleAlert = (err) => {
     setAlert(err);
     setTimeout(() => {
       setAlert(null); // making alert disappear
-    }, 5000);
+    }, 3000);
   };
 
   const authSuccess = () => {
     setAuth(() => true);
-    setLoginStatus(() => true);
+    setLoginStatus({ ...loginStatus, status: true });
   };
 
   const value = {
@@ -37,6 +36,7 @@ const AppContextProvider = ({ children }) => {
     setSelectedDishes,
     auth,
     loginStatus,
+    setLoginStatus,
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

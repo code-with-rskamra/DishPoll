@@ -7,7 +7,7 @@ const DishCard = ({ id, dishName, description, image }) => {
   const [vote, setVote] = useState(false);
 
   const handleSelection = (event) => {
-    const { rank, points } = JSON.parse(event.target.value);
+    const { rank } = JSON.parse(event.target.value);
     const arr = [...selectedDishes];
     if (selectedDishes.includes(id)) {
       const currentIndex = selectedDishes.indexOf(id);
@@ -18,11 +18,15 @@ const DishCard = ({ id, dishName, description, image }) => {
   };
   return (
     <div className={classes.card}>
-      <img src={image} alt={`${dishName}'s picture`} height="50%" />
+      <img
+        src={`${image},${dishName}`}
+        alt={`${dishName}'s picture`}
+        height="50%"
+      />
       <h4 className={classes.card__title}>{dishName}</h4>
       <hr />
       <div className={classes.card__desc}>{description}</div>
-      <button className={classes.card__vote} onClick={() => setVote(true)}>
+      <button className={classes.cardbtn} onClick={() => setVote(true)}>
         Vote
       </button>
       <div>
@@ -34,6 +38,7 @@ const DishCard = ({ id, dishName, description, image }) => {
           ].map((btn) => {
             return (
               <button
+                className={classes.cardbtn}
                 key={btn.rank}
                 value={JSON.stringify(btn)}
                 onClick={handleSelection}
