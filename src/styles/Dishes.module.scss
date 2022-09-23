@@ -1,27 +1,18 @@
 @import "./variables.scss";
 
 .container {
-  margin: 15% 2%;
+  margin: 0% 2%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   flex-direction: column;
   @include breakpoint(md) {
     flex-direction: row;
-    margin: 8% 2%;
+    margin: 2%;
   }
   h1 {
     margin: auto;
     color: red;
-  }
-}
-
-.save {
-  position: absolute;
-  top: 8%;
-  right: 3%;
-  button {
-    width: 200px;
   }
 }
 
@@ -80,4 +71,26 @@
 .loading {
   text-align: center;
   margin-top: 200px;
+}
+
+.save {
+  position: fixed;
+  top: 7%;
+  right: 6%;
+  z-index: 2;
+  width: 100%;
+  outline: none;
+  display: flex;
+  justify-content: flex-end;
+  gap: 30px;
+  button {
+    box-shadow: $darkShadow;
+    width: 40%;
+    background-color: orange;
+    margin: 0;
+    padding: 8px 10px;
+    @include breakpoint(md) {
+      width: 15%;
+    }
+  }
 }

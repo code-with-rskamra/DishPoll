@@ -4,12 +4,17 @@ import DishCard from "./DishCard";
 import classes from "../styles/Dishes.module.scss";
 import { AppContext } from "../context/AppContextProvider";
 
+const POLL_URL = process.env.REACT_APP_POLL_API;
 const Dishes = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const { loginStatus, selectedDishes, setSelectedDishes, dishes } =
-    useContext(AppContext);
-  const POLL_URL = process.env.REACT_APP_POLL_API;
-  const { handleAlert } = useContext(AppContext);
+  const {
+    loginStatus,
+    selectedDishes,
+    setSelectedDishes,
+    dishes,
+    handleLogout,
+    handleAlert,
+  } = useContext(AppContext);
 
   useEffect(() => {
     const pollExist = async () => {
@@ -67,6 +72,9 @@ const Dishes = () => {
       <div className={classes.save}>
         <button onClick={handleSavePoll} className={classes.cardbtn}>
           {!isLoading ? `Save` : `Saving ...`}
+        </button>
+        <button onClick={handleLogout} className={classes.cardbtn}>
+          Logout
         </button>
       </div>
       <div className={classes.container}>

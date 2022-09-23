@@ -29,3 +29,11 @@
     }
   }
 }
+
+.content {
+  position: absolute;
+  top: 20%;
+  @include breakpoint(md) {
+    top: 10%;
+  }
+}

@@ -6,6 +6,7 @@ import { calcDishScore } from "../utils/pollScore";
 const PollResult = () => {
   const [sorted, setSorted] = useState([]);
   const { dishes } = useContext(AppContext);
+
   useEffect(() => {
     const updatePoints = async () => {
       const allDishes = await calcDishScore(dishes);

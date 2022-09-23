@@ -35,6 +35,11 @@ const AppContextProvider = ({ children }) => {
     }, 3000);
   };
 
+  const handleLogout = () => {
+    setAuth(false);
+    setLoginStatus({ status: false });
+  };
+
   const authSuccess = () => {
     setAuth(() => true);
     setLoginStatus({ ...loginStatus, status: true });
@@ -49,6 +54,7 @@ const AppContextProvider = ({ children }) => {
     auth,
     loginStatus,
     dishes,
+    handleLogout,
     setLoginStatus,
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

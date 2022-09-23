@@ -16,6 +16,7 @@ const DishCard = ({ id, dishName, description, image }) => {
     arr[rank - 1] = id;
     setSelectedDishes(arr);
   };
+
   return (
     <div className={classes.card}>
       <img

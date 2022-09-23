@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import classes from "../styles/Dashboard.module.scss";
 import Dishes from "./Dishes";
 import PollResult from "./PollResult";
+
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState(1);
 
@@ -33,15 +34,9 @@ const Dashboard = () => {
           Poll Result
         </div>
       </div>
-      {activeTab == 1 ? (
-        <>
-          <Dishes />
-        </>
-      ) : (
-        <div style={{ position: "absolute", top: "10%" }}>
-          <PollResult />
-        </div>
-      )}
+      <div className={classes.content}>
+        {activeTab == 1 ? <Dishes /> : <PollResult />}
+      </div>
     </>
   );
 };

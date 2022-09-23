@@ -11,7 +11,7 @@ const inititalState = {
 
 const Login = () => {
   const [userDetails, setUserDetails] = useState(inititalState);
-  const { handleAlert, authSuccess, alert, loginStatus, setLoginStatus } =
+  const { handleAlert, authSuccess, loginStatus, setLoginStatus } =
     useContext(AppContext);
   const navigate = useNavigate();
 
