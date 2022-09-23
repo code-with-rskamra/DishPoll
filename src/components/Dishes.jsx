@@ -5,20 +5,13 @@ import classes from "../styles/Dishes.module.scss";
 import { AppContext } from "../context/AppContextProvider";
 
 const Dishes = () => {
-  const [dishes, setDishes] = useState();
   const [isLoading, setIsLoading] = useState(false);
-  const { loginStatus, selectedDishes, setSelectedDishes } =
+  const { loginStatus, selectedDishes, setSelectedDishes, dishes } =
     useContext(AppContext);
-  const DISHES_URL = process.env.REACT_APP_DISHES_API;
   const POLL_URL = process.env.REACT_APP_POLL_API;
   const { handleAlert } = useContext(AppContext);
 
   useEffect(() => {
-    const getDishes = async () => {
-      const response = await axios.get(DISHES_URL);
-      setDishes(response.data);
-    };
-
     const pollExist = async () => {
       try {
         const response = await axios.get(`${POLL_URL}/${loginStatus?.user}`);
@@ -30,8 +23,6 @@ const Dishes = () => {
         });
       }
     };
-
-    getDishes();
     pollExist();
   }, []);
 
