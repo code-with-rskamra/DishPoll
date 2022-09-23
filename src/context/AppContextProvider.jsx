@@ -38,6 +38,7 @@ const AppContextProvider = ({ children }) => {
   const handleLogout = () => {
     setAuth(false);
     setLoginStatus({ status: false });
+    setSelectedDishes([]);
   };
 
   const authSuccess = () => {

@@ -5,7 +5,7 @@ import { calcDishScore } from "../utils/pollScore";
 
 const PollResult = () => {
   const [sorted, setSorted] = useState([]);
-  const { dishes } = useContext(AppContext);
+  const { dishes, selectedDishes } = useContext(AppContext);
 
   useEffect(() => {
     const updatePoints = async () => {
@@ -31,7 +31,14 @@ const PollResult = () => {
           (dish) => dish.id == dishId
         );
         return (
-          <div className={classes.card}>
+          <div
+            className={classes.card}
+            style={{
+              borderColor: `${
+                selectedDishes.includes(+dishId) ? "orange" : null
+              }`,
+            }}
+          >
             <div>{`${index + 1}.`}</div>
             <img src={`${image},${dishName}`} alt={`${dishName}'s picture`} />
             <h4 className={classes.card__dishname}>{dishName}</h4>
